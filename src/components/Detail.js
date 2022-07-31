@@ -29,7 +29,7 @@ const Detail = ({ exerciseDetail }) => {
     }}>
       <img src={gifUrl} alt={name} loading="lazy" className="detail-image" />
       <Stack sx ={{ gap: { lg: '35px', xs: '20px' }}}>
-        <Typography variant="h3" textTransform="capitalize">
+        <Typography variant="h3" textTransform="capitalize" style={{color: '#9C27B0'}}>
           {name}
         </Typography>
         <Typography variant="h6" pr="15px">
