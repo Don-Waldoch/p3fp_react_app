@@ -22,7 +22,7 @@ const ExerciseVideos = ({ exerciseVideos, name }) => {
           <a
             key={index}
             className="exercises-video"
-            href={`https://www.youtube.com/watch?v=${item.video.videID}`}
+            href={`https://www.youtube.com/watch?v=${item.video.videoId}`}
             target="_blank"
             rel="noreferrer"
           >
