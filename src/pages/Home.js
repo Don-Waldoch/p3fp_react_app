@@ -7,7 +7,7 @@ import Login from '../components/Login';
 import SearchExercises from '../components/SearchExercises';
 
 const Home = () => {
-  const [bodyPart, setBodyPart] = useState('all')
+  const [bodyPart, setBodyPart] = useState('all');
   const [exercises, setExercises] = useState([]);
 
   return (
