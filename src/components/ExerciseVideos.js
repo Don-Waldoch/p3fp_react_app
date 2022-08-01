@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 
 const ExerciseVideos = ({ exerciseVideos, name }) => {
-  console.log("Hello");
-  console.log(exerciseVideos);
+  // console.log("Hello");
+  // console.log(exerciseVideos);
 
   if (!exerciseVideos.length) return 'Loading...';
 
@@ -18,7 +18,7 @@ const ExerciseVideos = ({ exerciseVideos, name }) => {
           gap: { lg: '110px', xs: '0' }
         }}
       >
-        {exerciseVideos?.slice(0, 6).map((item, index) => (
+        {exerciseVideos?.slice(0, 3).map((item, index) => (
           <a
             key={index}
             className="exercise-video"
