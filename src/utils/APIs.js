@@ -34,7 +34,7 @@ export const decryptWithAES = (CodedText) => {
   return ClearText;
 };
 
-export const encryptWithSHA = (text) => {
+export const hashWithSHA = (text) => {
   const hash = CryptoJS.SHA3(text, {outputLength: 256}).toString();
   return hash;
 }

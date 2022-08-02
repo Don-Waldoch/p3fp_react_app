@@ -14,7 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Copyright from './Copyright';
-import { encryptWithAES, encryptWithSHA } from '../utils/APIs';
+import { encryptWithAES, hashWithSHA } from '../utils/APIs';
 
 const theme = createTheme();
 
@@ -24,7 +24,7 @@ export default function SignIn() {
     const data = new FormData(event.currentTarget);
 
     const PasswordTXT = data.get('password');
-    const PasswordSHA = encryptWithSHA(PasswordTXT);
+    const PasswordSHA = hashWithSHA(PasswordTXT);
     const PasswordAES = encryptWithAES(PasswordSHA);
 
     const EmailTXT = data.get('email');
