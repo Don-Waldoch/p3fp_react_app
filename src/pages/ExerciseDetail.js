@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 
-import { exerciseOptions, youtubeOptions, fetchData } from '../utils/fetchData';
+import { exerciseOptions, youtubeOptions, fetchRapidAPI } from '../utils/APIs';
 
 import Detail from '../components/Detail';
 import ExerciseVideos from '../components/ExerciseVideos';
@@ -20,25 +20,25 @@ const ExerciseDetail = () => {
       const exerciseDbUrl = 'https://exercisedb.p.rapidapi.com';
       const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com';
 
-      const exerciseDetailData = await fetchData(
+      const exerciseDetailData = await fetchRapidAPI(
         `${exerciseDbUrl}/exercises/exercise/${id}`,
         exerciseOptions
       );
       setExerciseDetail(exerciseDetailData);
 
-      const exerciseVideosData = await fetchData(
+      const exerciseVideosData = await fetchRapidAPI(
         `${youtubeSearchUrl}/search?query=${exerciseDetailData.name}`,
         youtubeOptions
       );
       setExerciseVideos(exerciseVideosData.contents);
 
-      const targetMuscleExercisesData = await fetchData(
+      const targetMuscleExercisesData = await fetchRapidAPI(
         `${exerciseDbUrl}/exercises/target/${exerciseDetailData.target}`,
         exerciseOptions
       );
       setTargetMuscleExercises(targetMuscleExercisesData);
 
-      const equipmentExercisesData = await fetchData(
+      const equipmentExercisesData = await fetchRapidAPI(
         `${exerciseDbUrl}/exercises/equipment/${exerciseDetailData.equipment}`,
         exerciseOptions
       );

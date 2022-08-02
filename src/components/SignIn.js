@@ -14,7 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Copyright from './Copyright';
-const CryptoJS = require('crypto-js');
+import { encryptWithAES, encryptWithSHA } from '../utils/APIs';
+
 const theme = createTheme();
 
 export default function SignIn() {
@@ -22,35 +23,23 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    let ClearText = data.get('password');
-    let CodedText = encryptWithAES(ClearText);
-    let PlainText = decryptWithAES(CodedText);
-    // console.log(ClearText);
-    // console.log(CodedText);
-    // console.log(PlainText);
+    const PasswordTXT = data.get('password');
+    const PasswordSHA = encryptWithSHA(PasswordTXT);
+    const PasswordAES = encryptWithAES(PasswordSHA);
 
-    var hash = CryptoJS.SHA3(ClearText, { outputLength: 256 }).toString();
-    console.log(hash);
-    let CodedHash = encryptWithAES(hash);
-    console.log(CodedHash);
+    const EmailTXT = data.get('email');
+    const EmailAES = encryptWithAES(EmailTXT);
 
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
-  };
+    console.log({
+      email: EmailAES,
+      password: PasswordAES,
+    });
 
-  const encryptWithAES = (ClearText) => {
-    const passphrase = 'hWmZq3t6w9z$C&F)J@NcRfUjXn2r5u7x';
-    const CodedText = CryptoJS.AES.encrypt(ClearText, passphrase).toString();
-    return CodedText;
-  };
-
-  const decryptWithAES = (CodedText) => {
-    const passphrase = 'hWmZq3t6w9z$C&F)J@NcRfUjXn2r5u7x';
-    const bytes = CryptoJS.AES.decrypt(CodedText, passphrase);
-    const ClearText = bytes.toString(CryptoJS.enc.Utf8);
-    return ClearText;
+    // console.log(PasswordTXT);
+    // console.log(PasswordSHA);
+    // console.log(PasswordAES);
+    // const TestSHA = decryptWithAES(PasswordAES);
+    // console.log(TestSHA);
   };
 
   return (

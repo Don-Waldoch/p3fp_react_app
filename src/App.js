@@ -6,8 +6,8 @@ import './App.css';
 import ExerciseDetail from './pages/ExerciseDetail';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-import Sign_In from './pages/Sign_In';
-import Sign_Up from './pages/Sign_Up';
+import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
 import Navbar from './components/Navbar';
 
 const App = () => {
@@ -17,8 +17,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/exercise/:id" element={<ExerciseDetail />} />
-        <Route path="/signin" element={<Sign_In />} />
-        <Route path="/signup" element={<Sign_Up />} />
+        <Route path="/signin" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
       <Footer />
     </Box>

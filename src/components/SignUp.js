@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Copyright from './Copyright';
+import { encryptWithAES, encryptWithSHA } from '../utils/APIs';
 
 const theme = createTheme();
 
@@ -21,9 +22,13 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const PasswordSHA = encryptWithSHA(data.get('password'));
+
     console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+      firstName: encryptWithAES(data.get('firstName')),
+      lastName: encryptWithAES(data.get('lastName')),
+      email: encryptWithAES(data.get('email')),
+      password: encryptWithAES(PasswordSHA),
     });
   };
 

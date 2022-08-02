@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 import SignUp from '../components/SignUp';
 
-const Sign_Up = () => {
+const SignUpPage = () => {
     return (
       <Box>
         <SignUp />
@@ -11,4 +11,4 @@ const Sign_Up = () => {
     )
   }
   
-export default Sign_Up;
+export default SignUpPage;
