@@ -36,7 +36,7 @@ export default function SignIn() {
     });
 
     // console.log(PasswordTXT);
-    // console.log(PasswordSHA);
+    console.log(PasswordSHA);
     // console.log(PasswordAES);
     // const TestSHA = decryptWithAES(PasswordAES);
     // console.log(TestSHA);

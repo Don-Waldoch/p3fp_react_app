@@ -23,12 +23,13 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const PasswordSHA = hashWithSHA(data.get('password'));
-
+    
+    console.log(PasswordSHA);
     console.log({
-      email: encryptWithAES(data.get('email')),
-      firstName: encryptWithAES(data.get('firstName')),
-      lastName: encryptWithAES(data.get('lastName')),
-      password: encryptWithAES(PasswordSHA),
+      email: data.get('email'),
+      firstName: data.get('firstName'),
+      lastName: data.get('lastName'),
+      password: PasswordSHA
     });
   };
 
