@@ -13,10 +13,10 @@ const SearchExercises = ({setExercises, bodyPart, setBodyPart}) => {
       const bodyPartsData = await fetchRapidAPI(
         'https://exercisedb.p.rapidapi.com/exercises/bodyPartList',
         exerciseOptions
-      )
+      );
 
       setBodyParts(['all', ...bodyPartsData]);
-    }
+    };
 
     fetchExercisesData();
   }, []);
@@ -39,9 +39,9 @@ const SearchExercises = ({setExercises, bodyPart, setBodyPart}) => {
       setExercises(searchedExercises);
       
       // console.log(exercisesData);
-      console.log(searchedExercises);
+      // console.log(searchedExercises);
     }
-  }
+  };
 
   return (
     <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
@@ -94,7 +94,7 @@ const SearchExercises = ({setExercises, bodyPart, setBodyPart}) => {
         />
       </Box>
     </Stack>
-  )
-}
+  );
+};
 
 export default SearchExercises;

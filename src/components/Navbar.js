@@ -20,7 +20,7 @@ const Navbar = () => {
         <Link to="/signup" style={{ textDecoration: 'none', color: "#3A1212"}}>Sign Up</Link>
       </Stack>
     </Stack>
-  )
-}
+  );
+};
 
 export default Navbar;

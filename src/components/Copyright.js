@@ -13,6 +13,6 @@ function Copyright(props) {
       {'.'}
     </Typography>
   );
-}
+};
   
 export default Copyright;

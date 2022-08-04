@@ -6,7 +6,7 @@ import { exerciseOptions, fetchRapidAPI } from '../utils/APIs';
 import ExerciseCard from './ExerciseCard';
 
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
-  console.log(exercises);
+  // console.log(exercises);
 
   const [currentPage, setCurrentPage] = useState(1);
   const exercisesPerPage = 9;
@@ -17,10 +17,10 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const paginate = (e, value) => {
     setCurrentPage(value);
     window.scrollTo({ top: 1800, behavior: 'smooth'})
-  }
+  };
 
   useEffect(() => {
-    console.log(bodyPart);
+    // console.log(bodyPart);
     const fetchExercisesData = async () => {
       let exercisesData = [];
 
@@ -40,7 +40,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     };
 
     fetchExercisesData();
-  }, [bodyPart]);
+  }, [bodyPart, setExercises]);
 
   return (
     <Box id="exercises"
@@ -75,7 +75,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
         )}
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
 export default Exercises;

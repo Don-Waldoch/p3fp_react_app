@@ -8,7 +8,7 @@ const SignInPage = () => {
       <Box>
         <SignIn />
       </Box>
-    )
+    );
   }
   
 export default SignInPage;

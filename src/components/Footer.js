@@ -15,7 +15,7 @@ const Footer = () => {
         Made with 💜 by Don Waldoch
       </Typography>
     </Box>
-  )
-}
+  );
+};
 
 export default Footer;

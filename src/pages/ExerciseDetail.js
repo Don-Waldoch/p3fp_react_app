@@ -43,7 +43,7 @@ const ExerciseDetail = () => {
         exerciseOptions
       );
       setEquipmentExercises(equipmentExercisesData);
-    }
+    };
 
     fetchExercisesData();
   }, [id]);

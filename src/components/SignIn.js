@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-// import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -14,7 +13,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Copyright from './Copyright';
-import { encryptWithAES, hashWithSHA } from '../utils/APIs';
+import { hashWithSHA } from '../utils/APIs';
 
 const theme = createTheme();
 
@@ -23,29 +22,15 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const PasswordTXT = data.get('password');
-    const PasswordSHA = hashWithSHA(PasswordTXT);
-    const PasswordAES = encryptWithAES(PasswordSHA);
-
-    const EmailTXT = data.get('email');
-    const EmailAES = encryptWithAES(EmailTXT);
-
     console.log({
-      email: EmailAES,
-      password: PasswordAES,
+      email: data.get('email'),
+      password: hashWithSHA(data.get('password'))
     });
-
-    // console.log(PasswordTXT);
-    console.log(PasswordSHA);
-    // console.log(PasswordAES);
-    // const TestSHA = decryptWithAES(PasswordAES);
-    // console.log(TestSHA);
   };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
-        {/* <CssBaseline /> */}
         <Box
           sx={{
             marginTop: 8,
@@ -111,4 +96,4 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+};

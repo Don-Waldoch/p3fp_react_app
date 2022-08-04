@@ -23,7 +23,7 @@ const Home = () => {
         bodyPart={bodyPart}
       />
     </Box>
-  )
-}
+  );
+};
 
 export default Home;

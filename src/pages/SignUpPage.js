@@ -8,7 +8,7 @@ const SignUpPage = () => {
       <Box>
         <SignUp />
       </Box>
-    )
+    );
   }
   
 export default SignUpPage;

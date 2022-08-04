@@ -6,7 +6,7 @@ export const exerciseOptions = {
     'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
     'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_EXERCISEDB_HOST
   }
-}
+};
 
 export const youtubeOptions = {
   method: 'GET',
@@ -14,12 +14,11 @@ export const youtubeOptions = {
     'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
     'X-RapidAPI-Host': process.env.REACT_APP_RAPID_API_YOUTUBE_HOST
   }
-}
+};
 
 export const fetchRapidAPI = async (url, options) => {
   const response = await fetch(url, options);
   const data = await response.json();
-
   return data;
 };
 
@@ -37,4 +36,4 @@ export const decryptWithAES = (CodedText) => {
 export const hashWithSHA = (text) => {
   const hash = CryptoJS.SHA3(text, {outputLength: 256}).toString();
   return hash;
-}
+};
