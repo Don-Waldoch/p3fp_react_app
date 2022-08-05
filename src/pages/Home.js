@@ -18,6 +18,7 @@ const Home = ({authUser, bodyPart, setBodyPart}) => {
         setBodyPart={setBodyPart}
       />
       <Exercises
+        authUser={authUser}
         exercises={exercises}
         setExercises={setExercises}
         bodyPart={bodyPart}

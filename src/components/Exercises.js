@@ -5,7 +5,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import { exerciseOptions, fetchRapidAPI } from '../utils/APIs';
 import ExerciseCard from './ExerciseCard';
 
-const Exercises = ({ exercises, setExercises, bodyPart }) => {
+const Exercises = ({ authUser,  exercises, setExercises, bodyPart }) => {
   // console.log(exercises);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,17 +21,16 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   useEffect(() => {
     console.log(bodyPart);
+    console.log(authUser);
 
     const fetchExercisesData = async () => {
       let exercisesData = [];
 
       if (bodyPart === 'all') {
-
         exercisesData = await fetchRapidAPI(
           'https://exercisedb.p.rapidapi.com/exercises',
           exerciseOptions
         );
-
       } else if (bodyPart === 'favorites') {
         let allData = await fetchRapidAPI(
           'https://exercisedb.p.rapidapi.com/exercises',
@@ -41,9 +40,8 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
         const requestOptions = {
           method: "GET",
         };
-    
         const response = await fetch(
-          `${process.env.REACT_APP_DB_URL}/favorites/1`,
+          `${process.env.REACT_APP_DB_URL}/favorites/${authUser.userid}`,
           requestOptions
         );
         const favorites = await response.json();
@@ -69,7 +67,6 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           exercisesData = subArray.concat(filteredArray);
           subArray = exercisesData;
         });
-
       } else {
         exercisesData = await fetchRapidAPI(
           `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
@@ -81,7 +78,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     };
 
     fetchExercisesData();
-  }, [bodyPart, setExercises]);
+  }, [authUser, bodyPart, setExercises]);
 
   return (
     <Box id="exercises"
