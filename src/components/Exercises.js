@@ -39,13 +39,22 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           {
               "favoriteid": 3,
               "userid": 1,
-              "exerciseid": "0008"
+              "exerciseid": "0009"
           }
         ]
-        exercisesData = await fetchRapidAPI(
+        let allData = await fetchRapidAPI(
           'https://exercisedb.p.rapidapi.com/exercises',
           exerciseOptions
         );
+        let subArray = [];
+        favorites.forEach((element) => {
+          const filteredArray = allData.filter(entry => entry.id === element.exerciseid);
+          console.log("Filtering:");
+          console.log(element.exerciseid);
+          console.log(filteredArray);
+          exercisesData = subArray.concat(filteredArray);
+          subArray = exercisesData;
+        });
       } else {
         exercisesData = await fetchRapidAPI(
           `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
