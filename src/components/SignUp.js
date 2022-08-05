@@ -11,23 +11,43 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 import Copyright from './Copyright';
 import { hashWithSHA } from '../utils/APIs';
 
 const theme = createTheme();
 
-export default function SignUp({authUser, setAuthUser}) {
-  const handleSubmit = (event) => {
+export default function SignUp({setAuthUser, setBodyPart}) {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const enteredData = new FormData(event.currentTarget);
     
-    console.log({
-      email: data.get('email'),
-      firstName: data.get('firstName'),
-      lastName: data.get('lastName'),
-      password: hashWithSHA(data.get('password'))
-    });
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        email: enteredData.get('email'),
+        firstname: enteredData.get('firstName'),
+        lastname: enteredData.get('lastName'),
+        passhash: hashWithSHA(enteredData.get('password'))
+      }),
+    };
+
+    const response = await fetch(
+      `${process.env.REACT_APP_DB_URL}/users/signup/`,
+      requestOptions
+    );
+
+    if (response.status === 200) {
+      const data = await response.json();
+      setAuthUser(data);
+      setBodyPart('favorites');
+      navigate('/');
+    } else {
+      alert("Sign Up failed, please try again.");
+    }
   };
 
   return (

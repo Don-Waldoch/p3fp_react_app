@@ -49,9 +49,6 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
         let subArray = [];
         favorites.forEach((element) => {
           const filteredArray = allData.filter(entry => entry.id === element.exerciseid);
-          console.log("Filtering:");
-          console.log(element.exerciseid);
-          console.log(filteredArray);
           exercisesData = subArray.concat(filteredArray);
           subArray = exercisesData;
         });
@@ -61,8 +58,6 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           exerciseOptions
         );
       }
-
-      console.log(exercisesData);
 
       setExercises(exercisesData);
     };

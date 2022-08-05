@@ -15,7 +15,7 @@ const SearchExercises = ({authUser, setExercises, bodyPart, setBodyPart}) => {
         exerciseOptions
       );
 
-      console.log("Authorized?", authUser.hasOwnProperty('userid'));
+      // console.log("Authorized?", authUser.hasOwnProperty('userid'));
       if (authUser.hasOwnProperty('userid')) {
         setBodyParts(['favorites', 'all', ...bodyPartsData]);
       } else {
@@ -24,7 +24,6 @@ const SearchExercises = ({authUser, setExercises, bodyPart, setBodyPart}) => {
     };
 
     fetchExercisesData();
-    console.log(bodyPart);
   }, [authUser, bodyPart, setBodyPart]);
   
   const handleSearch = async () => {

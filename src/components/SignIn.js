@@ -18,11 +18,12 @@ import { hashWithSHA } from '../utils/APIs';
 
 const theme = createTheme();
 
-export default function SignIn({setBodyPart, setAuthUser}) {
+export default function SignIn({setAuthUser, setBodyPart}) {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const enteredData = new FormData(event.currentTarget);
+
     const requestOptions = {
       method: "POST",
       headers: {"Content-Type": "application/json"},
@@ -36,21 +37,14 @@ export default function SignIn({setBodyPart, setAuthUser}) {
       requestOptions
     );
 
-    console.log(response.status);
     if (response.status === 200) {
       const data = await response.json();
-      console.log(data);
       setAuthUser(data);
       setBodyPart('favorites');
       navigate('/');
     } else {
       alert("Login failed, please try again.");
     }
-
-    // console.log({
-    //   email: enteredData.get('email'),
-    //   password: hashWithSHA(enteredData.get('password'))
-    // });
   };
   
   return (
