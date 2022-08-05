@@ -6,7 +6,6 @@ import TargetImage from '../assets/icons/target.png';
 import EquipmentImage from '../assets/icons/equipment.png';
 
 const Detail = ({ authUser, exerciseDetail }) => {
-  console.log(exerciseDetail);
   const { bodyPart, gifUrl, id, name, target, equipment } = exerciseDetail;
 
   const extraDetail = [
@@ -24,11 +23,29 @@ const Detail = ({ authUser, exerciseDetail }) => {
     }
   ];
 
-  const handleFavorite = async () => {
+  const handleFavorite = async (event) => {
+    event.preventDefault();
     if (authUser.hasOwnProperty('userid')) {
       console.log("userID", authUser.userid);
+      console.log("ExerciseID", id);
+
+      const requestOptions = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          exerciseid: id,
+          userid: authUser.userid
+        }),
+      };
+
+      const response = await fetch(
+        `${process.env.REACT_APP_DB_URL}/favorites`,
+        requestOptions
+      );
+
+      if (response.status !== 200) {
+      }
     }
-    console.log("ExerciseID", id);
   };
 
   return (
@@ -41,20 +58,22 @@ const Detail = ({ authUser, exerciseDetail }) => {
         <Typography variant="h3" textTransform="capitalize" color="#9C27B0">
           {name}
         </Typography>
-        <Button className="favorite-btn"
-          sx={{
-            bgcolor: "#9127B0",
-            color: "#FFFFFF",
-            textTransform: 'none',
-            width: { lg: '175px', xs: '80px'},
-            fontSize: { lg: '20px', xs: '14px'},
-            height: '56px',
-            right: '0'
-          }}
-          onClick={handleFavorite}
-        >
-          Add to Favorites
-        </Button>
+        {authUser.hasOwnProperty('userid') &&
+          <Button className="favorite-btn"
+           sx={{
+              bgcolor: "#9127B0",
+              color: "#FFFFFF",
+              textTransform: 'none',
+              width: { lg: '175px', xs: '80px'},
+              fontSize: { lg: '20px', xs: '14px'},
+              height: '56px',
+              right: '0'
+            }}
+            onClick={handleFavorite}
+          >
+            Add to Favorites
+          </Button>
+        }
         <Typography variant="h6" pr="15px">
           Exercises keep you strong and {` `}
           {name} is one of the best exercises to target your {target}.
