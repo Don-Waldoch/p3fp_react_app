@@ -26,9 +26,6 @@ const Detail = ({ authUser, exerciseDetail }) => {
   const handleFavorite = async (event) => {
     event.preventDefault();
     if (authUser.hasOwnProperty('userid')) {
-      console.log("userID", authUser.userid);
-      console.log("ExerciseID", id);
-
       const requestOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -44,6 +41,7 @@ const Detail = ({ authUser, exerciseDetail }) => {
       );
 
       if (response.status !== 200) {
+        // Error respnse left to the reader
       }
     }
   };
@@ -80,13 +78,13 @@ const Detail = ({ authUser, exerciseDetail }) => {
           It will help you improve your mood and gain energy.
         </Typography>
         {extraDetail.map((item) => (
-          <Stack key={item.name} direction="row" gap="24px" alignItems="center">
-            <Button sx={{
+          <Stack direction="row" gap="24px" alignItems="center">
+            <Button key={item.name} sx={{
               background: '#EDE4AE',
               borderRadius: '50%',
               width: '100px',
               height: '100px'
-            }}>
+              }}>
               <img src={item.icon} alt={bodyPart} style={{
                 width: '50px',
                 height: '50px'

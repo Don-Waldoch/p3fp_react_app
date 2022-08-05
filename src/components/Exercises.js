@@ -20,38 +20,56 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   };
 
   useEffect(() => {
-    // console.log(bodyPart);
+    console.log(bodyPart);
+
     const fetchExercisesData = async () => {
       let exercisesData = [];
 
       if (bodyPart === 'all') {
+
         exercisesData = await fetchRapidAPI(
           'https://exercisedb.p.rapidapi.com/exercises',
           exerciseOptions
         );
+
       } else if (bodyPart === 'favorites') {
-        let favorites = [
-          {
-              "favoriteid": 1,
-              "userid": 1,
-              "exerciseid": "0007"
-          },
-          {
-              "favoriteid": 3,
-              "userid": 1,
-              "exerciseid": "0009"
-          }
-        ]
         let allData = await fetchRapidAPI(
           'https://exercisedb.p.rapidapi.com/exercises',
           exerciseOptions
         );
+
+        const requestOptions = {
+          method: "GET",
+        };
+    
+        const response = await fetch(
+          `${process.env.REACT_APP_DB_URL}/favorites/1`,
+          requestOptions
+        );
+        const favorites = await response.json();
+
+        console.log("Favorites:", favorites)
+    
+        // let favorites = [
+        //   {
+        //       "favoriteid": 1,
+        //       "userid": 1,
+        //       "exerciseid": "0007"
+        //   },
+        //   {
+        //       "favoriteid": 3,
+        //       "userid": 1,
+        //       "exerciseid": "0009"
+        //   }
+        // ]
+
         let subArray = [];
         favorites.forEach((element) => {
           const filteredArray = allData.filter(entry => entry.id === element.exerciseid);
           exercisesData = subArray.concat(filteredArray);
           subArray = exercisesData;
         });
+
       } else {
         exercisesData = await fetchRapidAPI(
           `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
