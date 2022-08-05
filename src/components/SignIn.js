@@ -30,7 +30,7 @@ export default function SignIn({setAuthUser, setBodyPart}) {
       body: JSON.stringify({
         email: enteredData.get('email'),
         passhash: hashWithSHA(enteredData.get('password'))
-      }),
+      })
     };
     const response = await fetch(
       `${process.env.REACT_APP_DB_URL}/users/signin/`,

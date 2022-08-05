@@ -54,7 +54,7 @@ const ExerciseDetail = ({ authUser, setBodyPart }) => {
       <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetail.name} />
       <SimilarExercises targetMuscleExercises={targetMuscleExercises} equipmentExercises={equipmentExercises} />
     </Box>
-  )
+  );
 };
 
 export default ExerciseDetail;

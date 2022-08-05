@@ -25,7 +25,7 @@ const Detail = ({ authUser, exerciseDetail, setBodyPart }) => {
 
   const handleFavorite = async (event) => {
     event.preventDefault();
-    
+
     if (authUser.hasOwnProperty('userid')) {
       const requestOptions = {
         method: "POST",
@@ -33,7 +33,7 @@ const Detail = ({ authUser, exerciseDetail, setBodyPart }) => {
         body: JSON.stringify({
           exerciseid: id,
           userid: authUser.userid
-        }),
+        })
       };
 
       const response = await fetch(

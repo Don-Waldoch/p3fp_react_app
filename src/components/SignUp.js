@@ -32,7 +32,7 @@ export default function SignUp({setAuthUser, setBodyPart}) {
         firstname: enteredData.get('firstName'),
         lastname: enteredData.get('lastName'),
         passhash: hashWithSHA(enteredData.get('password'))
-      }),
+      })
     };
 
     const response = await fetch(
