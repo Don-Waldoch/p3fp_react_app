@@ -6,8 +6,6 @@ import { exerciseOptions, fetchRapidAPI } from '../utils/APIs';
 import ExerciseCard from './ExerciseCard';
 
 const Exercises = ({ authUser,  exercises, setExercises, bodyPart }) => {
-  // console.log(exercises);
-
   const [currentPage, setCurrentPage] = useState(1);
   const exercisesPerPage = 9;
   const indexOfLastExercise = currentPage * exercisesPerPage;

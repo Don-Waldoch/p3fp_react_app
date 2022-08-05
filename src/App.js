@@ -6,8 +6,6 @@ import './App.css';
 import ExerciseDetail from './pages/ExerciseDetail';
 import Footer from './components/Footer';
 import Home from './pages/Home';
-// import SignInPage from './pages/SignInPage';
-// import SignUpPage from './pages/SignUpPage';
 import Navbar from './components/Navbar';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';

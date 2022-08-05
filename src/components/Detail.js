@@ -25,6 +25,7 @@ const Detail = ({ authUser, exerciseDetail, setBodyPart }) => {
 
   const handleFavorite = async (event) => {
     event.preventDefault();
+    
     if (authUser.hasOwnProperty('userid')) {
       const requestOptions = {
         method: "POST",
