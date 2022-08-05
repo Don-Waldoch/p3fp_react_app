@@ -15,9 +15,9 @@ const ExerciseCard = ({ exercise }) => {
           borderRadius: '20px',
           textTransform: 'capitalize'
         }}>
-          {exercise.bodyPart}
-        </Button>
-        <Button sx={{
+        {exercise.bodyPart}
+      </Button>
+      <Button sx={{
           ml: '21px',
           color: '#FFFFFF',
           background: '#B09C27',
@@ -25,18 +25,8 @@ const ExerciseCard = ({ exercise }) => {
           borderRadius: '20px',
           textTransform: 'capitalize'
         }}>
-          {exercise.target}
-        </Button>
-        <Button sx={{
-          ml: '21px',
-          color: '#FFFFFF',
-          background: '#9C27B0',
-          fontSize: '14px',
-          borderRadius: '20px',
-          textTransform: 'capitalize'
-        }}>
-          Add to Favorites
-        </Button>
+        {exercise.target}
+      </Button>
       </Stack>
       <Typography
         ml="21px"

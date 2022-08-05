@@ -8,7 +8,7 @@ import Detail from '../components/Detail';
 import ExerciseVideos from '../components/ExerciseVideos';
 import SimilarExercises from '../components/SimilarExercises';
 
-const ExerciseDetail = () => {
+const ExerciseDetail = ({ authUser }) => {
   const [exerciseDetail, setExerciseDetail] = useState({});
   const [exerciseVideos, setExerciseVideos] = useState([]);
   const [targetMuscleExercises, setTargetMuscleExercises] = useState([]);
@@ -50,7 +50,7 @@ const ExerciseDetail = () => {
 
   return (
     <Box>
-      <Detail exerciseDetail={exerciseDetail} />
+      <Detail authUser={authUser} exerciseDetail={exerciseDetail} />
       <ExerciseVideos exerciseVideos={exerciseVideos} name={exerciseDetail.name} />
       <SimilarExercises targetMuscleExercises={targetMuscleExercises} equipmentExercises={equipmentExercises} />
     </Box>

@@ -5,8 +5,9 @@ import BodyPartImage from '../assets/icons/body-part.png';
 import TargetImage from '../assets/icons/target.png';
 import EquipmentImage from '../assets/icons/equipment.png';
 
-const Detail = ({ exerciseDetail }) => {
-  const { bodyPart, gifUrl, name, target, equipment } = exerciseDetail;
+const Detail = ({ authUser, exerciseDetail }) => {
+  console.log(exerciseDetail);
+  const { bodyPart, gifUrl, id, name, target, equipment } = exerciseDetail;
 
   const extraDetail = [
     {
@@ -23,6 +24,13 @@ const Detail = ({ exerciseDetail }) => {
     }
   ];
 
+  const handleFavorite = async () => {
+    if (authUser.hasOwnProperty('userid')) {
+      console.log("userID", authUser.userid);
+    }
+    console.log("ExerciseID", id);
+  };
+
   return (
     <Stack gap="60px" sx={{
       mt: "30px",
@@ -33,6 +41,20 @@ const Detail = ({ exerciseDetail }) => {
         <Typography variant="h3" textTransform="capitalize" color="#9C27B0">
           {name}
         </Typography>
+        <Button className="favorite-btn"
+          sx={{
+            bgcolor: "#9127B0",
+            color: "#FFFFFF",
+            textTransform: 'none',
+            width: { lg: '175px', xs: '80px'},
+            fontSize: { lg: '20px', xs: '14px'},
+            height: '56px',
+            right: '0'
+          }}
+          onClick={handleFavorite}
+        >
+          Add to Favorites
+        </Button>
         <Typography variant="h6" pr="15px">
           Exercises keep you strong and {` `}
           {name} is one of the best exercises to target your {target}.
