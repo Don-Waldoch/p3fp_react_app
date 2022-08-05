@@ -3,14 +3,21 @@ import { Box, Typography, Button } from '@mui/material';
 
 import HeroBannerImage from '../assets/images/young-couple-workout-1487352885qp4.png';
 
-const HeroBanner = () => {
+const HeroBanner = ({authUser}) => {
+  let name = "Dwalz";
+  let summary = "exercises personalized to you";
+  if (authUser.hasOwnProperty('userid')) {
+    name = `${authUser.firstname} ${authUser.lastname}`;
+    summary = `exercises for ${name}`;
+  }
+
   return (
     <Box sx={{
         mt: { lg: '140px', xs: '70px' },
         ml: { sm: '50px' }
       }} position="relative" p="20px">
       <Typography color="#9C27B0" fontWeight={600} fontSize="30px">
-        Dwalz Fitness
+        {name} Fitness
       </Typography>
       <Typography fontWeight={700} sx={{
           fontSize: { lg: '44px', xs: '40px' }
@@ -21,7 +28,7 @@ const HeroBanner = () => {
       </Typography>
       <Typography fontSize="22px" lineHeight="35px" mb={4}>
         Check out the most effective<br/>
-        exercises personalized to you
+        {summary}
       </Typography>
       <Button variant="contained" color="secondary" href="#exercises"
         sx={{ padding: '10px' }}

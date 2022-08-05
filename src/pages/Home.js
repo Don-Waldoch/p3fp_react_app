@@ -10,7 +10,7 @@ const Home = ({authUser, bodyPart, setBodyPart}) => {
 
   return (
     <Box>
-      <HeroBanner />
+      <HeroBanner authUser={authUser} />
       <SearchExercises
         authUser={authUser}
         setExercises={setExercises}
