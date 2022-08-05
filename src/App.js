@@ -21,7 +21,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home  authUser={authUser} bodyPart={bodyPart} setBodyPart={setBodyPart} />} />
-        <Route path="/exercise/:id" element={<ExerciseDetail authUser={authUser} />} />
+        <Route path="/exercise/:id" element={<ExerciseDetail authUser={authUser} setBodyPart={setBodyPart} />} />
         <Route path="/signin" element={<SignIn setAuthUser={setAuthUser} setBodyPart={setBodyPart} />} />
         <Route path="/signup" element={<SignUp setAuthUser={setAuthUser} setBodyPart={setBodyPart} />} />
       </Routes>

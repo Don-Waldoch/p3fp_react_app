@@ -46,21 +46,6 @@ const Exercises = ({ authUser,  exercises, setExercises, bodyPart }) => {
         );
         const favorites = await response.json();
 
-        console.log("Favorites:", favorites)
-    
-        // let favorites = [
-        //   {
-        //       "favoriteid": 1,
-        //       "userid": 1,
-        //       "exerciseid": "0007"
-        //   },
-        //   {
-        //       "favoriteid": 3,
-        //       "userid": 1,
-        //       "exerciseid": "0009"
-        //   }
-        // ]
-
         let subArray = [];
         favorites.forEach((element) => {
           const filteredArray = allData.filter(entry => entry.id === element.exerciseid);

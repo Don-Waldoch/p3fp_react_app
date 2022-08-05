@@ -5,7 +5,7 @@ import BodyPartImage from '../assets/icons/body-part.png';
 import TargetImage from '../assets/icons/target.png';
 import EquipmentImage from '../assets/icons/equipment.png';
 
-const Detail = ({ authUser, exerciseDetail }) => {
+const Detail = ({ authUser, exerciseDetail, setBodyPart }) => {
   const { bodyPart, gifUrl, id, name, target, equipment } = exerciseDetail;
 
   const extraDetail = [
@@ -40,8 +40,8 @@ const Detail = ({ authUser, exerciseDetail }) => {
         requestOptions
       );
 
-      if (response.status !== 200) {
-        // Error respnse left to the reader
+      if (response.status === 200) {
+        setBodyPart('favorites');
       }
     }
   };
