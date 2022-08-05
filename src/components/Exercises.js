@@ -29,12 +29,31 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           'https://exercisedb.p.rapidapi.com/exercises',
           exerciseOptions
         );
+      } else if (bodyPart === 'favorites') {
+        let favorites = [
+          {
+              "favoriteid": 1,
+              "userid": 1,
+              "exerciseid": "0007"
+          },
+          {
+              "favoriteid": 3,
+              "userid": 1,
+              "exerciseid": "0008"
+          }
+        ]
+        exercisesData = await fetchRapidAPI(
+          'https://exercisedb.p.rapidapi.com/exercises',
+          exerciseOptions
+        );
       } else {
         exercisesData = await fetchRapidAPI(
           `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
           exerciseOptions
         );
       }
+
+      console.log(exercisesData);
 
       setExercises(exercisesData);
     };

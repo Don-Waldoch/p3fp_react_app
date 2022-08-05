@@ -14,14 +14,16 @@ import SignUp from './components/SignUp';
 
 const App = () => {
   const [authUser, setAuthUser] = useState({});
+  const [bodyPart, setBodyPart] = useState('all');
+
   return (
     <Box width="400px" sx={{ width: { xl: '1488px'}}} m="auto">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home  authUser={authUser} />} />
+        <Route path="/" element={<Home  authUser={authUser} bodyPart={bodyPart} setBodyPart={setBodyPart} />} />
         <Route path="/exercise/:id" element={<ExerciseDetail />} />
-        <Route path="/signin" element={<SignIn authUser={authUser} setAuthUser={setAuthUser} />} />
-        <Route path="/signup" element={<SignUp authUser={authUser} setAuthUser={setAuthUser} />} />
+        <Route path="/signin" element={<SignIn setAuthUser={setAuthUser} setBodyPart={setBodyPart} />} />
+        <Route path="/signup" element={<SignUp setAuthUser={setAuthUser} setBodyPart={setBodyPart} />} />
       </Routes>
       <Footer />
     </Box>

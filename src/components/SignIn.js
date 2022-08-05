@@ -18,7 +18,7 @@ import { hashWithSHA } from '../utils/APIs';
 
 const theme = createTheme();
 
-export default function SignIn({authUser, setAuthUser}) {
+export default function SignIn({setBodyPart, setAuthUser}) {
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,6 +41,7 @@ export default function SignIn({authUser, setAuthUser}) {
       const data = await response.json();
       console.log(data);
       setAuthUser(data);
+      setBodyPart('favorites');
       navigate('/');
     } else {
       alert("Login failed, please try again.");

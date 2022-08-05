@@ -15,12 +15,17 @@ const SearchExercises = ({authUser, setExercises, bodyPart, setBodyPart}) => {
         exerciseOptions
       );
 
-      setBodyParts(['all', ...bodyPartsData]);
-      console.log(authUser);
+      console.log("Authorized?", authUser.hasOwnProperty('userid'));
+      if (authUser.hasOwnProperty('userid')) {
+        setBodyParts(['favorites', 'all', ...bodyPartsData]);
+      } else {
+        setBodyParts(['all', ...bodyPartsData]);
+      }
     };
 
     fetchExercisesData();
-  }, [authUser]);
+    console.log(bodyPart);
+  }, [authUser, bodyPart, setBodyPart]);
   
   const handleSearch = async () => {
     if (search) {
