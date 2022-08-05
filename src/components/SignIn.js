@@ -11,21 +11,45 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
 import Copyright from './Copyright';
 import { hashWithSHA } from '../utils/APIs';
 
 const theme = createTheme();
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
+export default function SignIn({authUser, setAuthUser}) {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const enteredData = new FormData(event.currentTarget);
+    const requestOptions = {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        email: enteredData.get('email'),
+        passhash: hashWithSHA(enteredData.get('password'))
+      }),
+    };
+    const response = await fetch(
+      `${process.env.REACT_APP_DB_URL}/users/signin/`,
+      requestOptions
+    );
 
-    console.log({
-      email: data.get('email'),
-      password: hashWithSHA(data.get('password'))
-    });
+    console.log(response.status);
+    if (response.status === 200) {
+      const data = await response.json();
+      console.log(data);
+      setAuthUser(data);
+      navigate('/');
+    } else {
+      alert("Login failed, please try again.");
+    }
+
+    // console.log({
+    //   email: enteredData.get('email'),
+    //   password: hashWithSHA(enteredData.get('password'))
+    // });
   };
   
   return (
