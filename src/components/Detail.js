@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Stack, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 import BodyPartImage from '../assets/icons/body-part.png';
 import TargetImage from '../assets/icons/target.png';
@@ -7,6 +8,7 @@ import EquipmentImage from '../assets/icons/equipment.png';
 
 const Detail = ({ authUser, exerciseDetail, setBodyPart }) => {
   const { bodyPart, gifUrl, id, name, target, equipment } = exerciseDetail;
+  const navigate = useNavigate();
 
   const extraDetail = [
     {
@@ -43,6 +45,7 @@ const Detail = ({ authUser, exerciseDetail, setBodyPart }) => {
 
       if (response.status === 200) {
         setBodyPart('favorites');
+        navigate('/');
       }
     }
   };
